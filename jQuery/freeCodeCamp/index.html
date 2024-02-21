@@ -33,9 +33,41 @@
     The code I put inside document.ready function will run as soon as my browser has loaded my page
     jQuery functions start with a $, bling or dollar sign operator
     -->
+    
     <script>
         $(document).ready(function() {
+            // Target elements by:
+            //Type:
             $("button").addClass("animated bounce");
+            //Id:
+            $(".well").addClass("animated shake");
+            //Class:
+            $("#target3").addClass("animated fadeOut");
+
+            //Removes class: 
+            $("button").removeClass("btn-default");
+            //Change CSS properties:
+            $("#target1").css("color", "red");
+            //Change non-CSS properties:
+            $("#target1").prop("disabled", true);
+            //.html: Text within the element (tags included), .text: Text within the element (tags not included)
+            $("#target4").html("<em>#target4</em>");
+            //Removes html tag completely:
+            $("#target4").remove();
+            //Move elements from one div to another:
+            $("#target2").appendTo("#right-well");
+            //Copy elements from one place to another:
+            $("#target5").clone().appendTo("#left-well");
+            //With parent I can access the parent of an element 
+            $("#target1").parent().css("background-color", "red")
+            //With children I can access the childrens of an element 
+            $("#right-well").children().css("color", "orange");
+            //When I don´t have good ids to work I can use this too, to access the second child with the class target:
+            $(".target:nth-child(2)").addClass("animated bounce");
+            //Target elements based on their position odd or even, based in the zero indexed, so it´s basically the other way around.
+            $(".target:even").addClass("animated shake");
+            //Can also target the body
+            $("body").addClass("animated hinge");
         });
     </script>
 </body>
