@@ -1,0 +1,119 @@
+$text-color: red; /* Variables declaration $ not const or let*/
+
+.header {
+    text-align: center;
+}
+
+.blog-post, h1 {
+    color: $text-color;
+}
+
+.blog-post { /* Nesting */
+    h2 {
+        text-align: center;
+        color: blue;
+    }
+    p {
+        font-size: 20px;
+    }
+}
+
+// Mixin: group of CSS declarations that can be reused 
+@mixin border-radius($radius)
+{
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+#awesome {
+    width: 150px;
+    height: 150px; 
+    background-color: green;
+    @include border-radius(15px);
+
+}
+
+//If, else if, else logic
+@mixin border-stroke($val)
+{
+    @if $val == light {
+        border: 1px solid black;
+    }
+    @else if $val == medium {
+        border: 3px solid black;
+    }
+    @else if $val == heavy {
+        border: 6px solid black;
+    }
+    @else {
+        border: none;
+    }
+}
+
+#box {
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    @include border-stroke(medium);
+}
+
+//For (Sass Loop)
+@for $j from 1 to 6 {
+    .text-#{$j} 
+    { 
+        font-size: 15px * $j
+    }
+} 
+
+//While (Sass Loop)
+$x: 1;
+@while $x < 6 {
+    .text-#{$x} {
+        font-size: 15 * $x;
+    }
+    $x: $x + 1;
+}
+
+// Each, like a for each, loops over a list or map:
+//Map:
+$colors: (color1: blue, color2: black, color3: red);
+@each $key, $color in $colors {
+    .#{$color}-bg 
+    {
+        background: $color;
+    }
+}
+
+//List:
+@each $color in blue, black, red {
+    .#{$color}-bg 
+    {
+        background-color: $color;      
+    }
+}
+
+div {
+    height: 200px;
+    width: 200px;
+}
+
+//Import partials: _variables.scss 
+//@import 'variables' (it understands that is a partial, it goes with _ underscore"
+
+h3{
+    text-align: center;
+}
+
+// Extend makes it easy to borrow properties, not copy and paste it: 
+.info{
+    width: 200px;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+.info-important {
+    @extend .info;
+    background-color: magenta;
+}
