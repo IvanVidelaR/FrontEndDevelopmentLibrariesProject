@@ -60,7 +60,22 @@ I'm excited to learn React"). Place it above the ordered list.
 
  */
 
-function HeaderNav() {
+/**
+    Mini Challenge:
+    Move the `header` element from Page into 
+    its own component called "Header"
+*/
+/**
+    Challenge: 
+
+    - Move the `footer` into its own component called "Footer" 
+    and render that component inside the Page component.
+    - Move the `h1` and `ol` together into another component
+    called "MainContent" and render inside Page as well.
+*/
+
+
+function Header() {
     return (
         <header>
             <nav>
@@ -69,6 +84,7 @@ function HeaderNav() {
         </header>
     )
 }
+
 function MainContent() {
     return (
         <div>
@@ -94,7 +110,7 @@ function Footer() {
 }
 ReactDOM.render(
     <div>
-        <HeaderNav/>
+        <Header/>
         <MainContent/>
         <Footer/>
     </div>, 
