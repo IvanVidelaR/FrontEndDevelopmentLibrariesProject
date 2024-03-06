@@ -1,3 +1,5 @@
+/* Lesson 26: */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -31,4 +33,26 @@ body {
 
 .nav-description {
     font-size: 0.9em;
+}
+
+/* Lesson 27: */
+main {
+    background-color: #282D35;
+    color: #FFF;
+    padding: 57px 27px;
+}
+
+.main-title {
+    margin: 0;
+    letter-spacing: -0.05em;
+    font-size: 39px;
+}
+
+.main-list {
+    margin-top: 25px;
+    max-width: 400px;
+}
+
+.main-list-bullet {
+    padding: 10px 0;
 }
