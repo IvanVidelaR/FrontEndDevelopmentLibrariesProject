@@ -56,3 +56,8 @@ main {
 .main-list-bullet {
     padding: 10px 0;
 }
+
+.main-list-bullet::marker {
+    font-size: 1.4rem;
+    color: #61DAFB;
+}
