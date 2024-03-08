@@ -40,6 +40,10 @@ main {
     background-color: #282D35;
     color: #FFF;
     padding: 57px 27px;
+    /* Lesson 30: */
+    background-image: url("../images/react-icon-large.png");
+    background-repeat: no-repeat;
+    background-position: right 65%;
 }
 
 .main-title {
@@ -57,6 +61,7 @@ main {
     padding: 10px 0;
 }
 
+/* Lesson 29: */
 .main-list-bullet::marker {
     font-size: 1.4rem;
     color: #61DAFB;
