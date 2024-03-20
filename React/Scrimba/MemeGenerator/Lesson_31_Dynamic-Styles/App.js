@@ -10,7 +10,7 @@ export default function App(props) {
 
     /*document.getElementById("something").style.backgroundColor = (Es lo mismo que estar haciendo esto, por eso no hacemos background-color como se haría en html)*/
     const styles = {
-        backgroundColor: props.darkMode ? "#222222" : "#cccccc"
+        backgroundColor: props.darkMode ? "#222222" : "#ccccecc"
     }
     
     const squareElements = squares.map(square => (
