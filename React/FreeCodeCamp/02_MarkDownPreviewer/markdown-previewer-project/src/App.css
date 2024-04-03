@@ -1,0 +1,148 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 50px;
+  gap: 10px;
+}
+
+#project-title {
+  text-align: center;
+  color: #242424;
+  padding: 20px;
+  font-size: 3em;
+  line-height: 1;
+  font-family: "Yusei Magic", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  border-bottom: 1px solid white;
+}
+
+#editor {
+  width: 50%;
+  height: 500px;
+  resize: vertical;
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.87);
+  border: 2px solid white;
+  padding: 0 1rem;
+  box-shadow: 1px 1px 10px 2px purple;
+}
+
+#preview {
+  width: 50%;
+  padding: 0 1rem;
+  border: 2px solid white;
+  height: 500px;
+  background-color: #242424;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  box-shadow: 1px 1px 10px 2px purple;
+}
+
+#preview blockquote {
+  border-left: 3px solid #10cece;
+  color: #10cece;
+  padding-left: 5px;
+  margin-left: 25px;
+}
+
+#preview > p > code {
+  padding: 3px;
+}
+
+#preview code {
+  background: white;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+#preview pre {
+  display: block;
+  overflow: auto;
+  background: white;
+  padding: 5px;
+  line-height: 1.2;
+}
+
+#preview h1 {
+  border-bottom: 2px solid #10cece;
+}
+
+#preview h2 {
+  border-bottom: 1px solid #10cece;
+}
+
+#preview table {
+  border-collapse: collapse;
+}
+
+#preview td,
+#preview th {
+  border: 2px solid #10cece;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#preview img {
+  max-width: 100%;
+}
+
+code {
+  color: #800080;
+}
+
+ul, ol {
+  padding: 0 2rem;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  #project-title {
+    font-size: 2em;
+  }
+  #editor {
+    width: 90%;
+    height: 300px;
+    font-size: 0.7em;
+  }
+
+  #preview {
+    width: 100%;
+    height: 700px;
+    font-size: 0.7em;
+  }
+
+  #preview > p > code, #preview pre, #preview code {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    flex-direction: column; /* Por ejemplo, podrías cambiar la dirección de flexión */
+  }
+
+  #project-title {
+    font-size: 5em; 
+  }
+
+  #editor {
+    width: 90%; 
+    height: 500px; 
+    font-size: 2em; 
+  }
+
+  #preview {
+    width: 100%; 
+    height: 1200px; 
+    font-size: 2em;
+  }
+
+  code {
+    font-size: 1em;
+  }
+}
