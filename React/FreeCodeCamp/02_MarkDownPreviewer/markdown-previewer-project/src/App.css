@@ -1,26 +1,44 @@
+
 .container {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  padding: 10px 50px;
+  padding: 10px 10px;
   gap: 10px;
+  margin: auto;
+  width: 90%;
+}
+
+.credits {
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: center;
+}
+
+.credits p {
+  align-self: flex-end;
+  color: rgba(48, 46, 46, 0.998)
 }
 
 #project-title {
   text-align: center;
   color: #242424;
-  padding: 20px;
   font-size: 3em;
-  line-height: 1;
   font-family: "Yusei Magic", sans-serif;
   font-weight: 400;
   font-style: italic;
-  border-bottom: 1px solid white;
+  margin: 0;
+}
+
+#editor-wrapper, #preview-wrapper {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
 }
 
 #editor {
-  width: 50%;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   resize: vertical;
   background-color: #242424;
   color: rgba(255, 255, 255, 0.87);
@@ -30,14 +48,14 @@
 }
 
 #preview {
-  width: 50%;
+  width: 100%;
+  height: 100%;
   padding: 0 1rem;
   border: 2px solid white;
-  height: 500px;
   background-color: #242424;
-  scroll-behavior: smooth;
   overflow-y: scroll;
   box-shadow: 1px 1px 10px 2px purple;
+  resize: vertical;
 }
 
 #preview blockquote {
@@ -99,10 +117,19 @@ ul, ol {
 @media screen and (max-width: 800px) {
   .container {
     flex-direction: column;
+    padding: 10px 20px;
+  }
+
+  .credits {
+    flex-wrap: wrap;
   }
 
   #project-title {
     font-size: 2em;
+  }
+
+  #editor-wrapper, #preview-wrapper {
+    height: auto;
   }
   #editor {
     width: 90%;
@@ -112,33 +139,27 @@ ul, ol {
 
   #preview {
     width: 100%;
-    height: 700px;
+    height: 600px;
     font-size: 0.7em;
   }
 
   #preview > p > code, #preview pre, #preview code {
     font-size: 0.9em;
   }
+
 }
 
-@media screen and (min-width: 1440px) {
-  .container {
-    flex-direction: column; /* Por ejemplo, podrías cambiar la dirección de flexión */
-  }
+@media screen and (min-width: 1920px) {
 
   #project-title {
     font-size: 5em; 
   }
 
   #editor {
-    width: 90%; 
-    height: 500px; 
     font-size: 2em; 
   }
 
   #preview {
-    width: 100%; 
-    height: 1200px; 
     font-size: 2em;
   }
 
@@ -146,3 +167,4 @@ ul, ol {
     font-size: 1em;
   }
 }
+

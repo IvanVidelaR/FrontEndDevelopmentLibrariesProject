@@ -61,16 +61,23 @@ function App() {
 
     return (
         <main >
-            <h1 id="project-title">Markdown Previewer</h1>
+            <div class="credits">
+                <h1 id="project-title">Markdown Previewer</h1>
+                <p>by IvanVidelaR</p>
+            </div>
             <div class="container">
-                <textarea 
-                    name="editor" 
-                    id="editor" 
-                    onChange={updateText} 
-                    value={markdownText}
-                >
-                </textarea>
-                <div id="preview" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked(markdownText, {breaks: true})) }}>
+                <div id="editor-wrapper">
+                    <textarea 
+                        name="editor" 
+                        id="editor" 
+                        onChange={updateText} 
+                        value={markdownText}
+                    >
+                    </textarea>
+                </div>
+                <div id="preview-wrapper">
+                    <div id="preview" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked(markdownText, {breaks: true})) }}>
+                    </div>
                 </div>
             </div>
         </main>
