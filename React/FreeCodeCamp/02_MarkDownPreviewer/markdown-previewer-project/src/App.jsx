@@ -54,20 +54,35 @@ And should you wish, summon tables from the ether:
 function App() {
     
     const [markdownText, setMarkDownText] = useState(defaultMarkDownText);
+    const [editorVisible, setEditorVisible] = useState(true);
+    const [previewerVisible, setPreviewerVisible] = useState(true);
 
     function updateText(event) {
         setMarkDownText(event.target.value);
     }
+    
+    function toggleEditor() {
+        setEditorVisible(prevState => !prevState);
+    }
+    
+    function togglePreviewer() {
+        setPreviewerVisible(prevState => !prevState);
+    }
 
     return (
         <main >
-            <div class="credits">
+            <div className="credits">
                 <h1 id="project-title">Markdown Previewer</h1>
                 <p>by IvanVidelaR</p>
             </div>
-            <div class="container">
-                <div id="editor-wrapper">
-                    <textarea 
+            <div className="container">
+                <div id="editor-wrapper" className={editorVisible ? '' : 'hide'}>
+                    <div className={editorVisible ? 'toolbar' : 'toolbar hide'}>
+                        <p>Editor</p>
+                        <i className={previewerVisible ? 'fa fa-arrows-alt' : 'fa fa-compress'} onClick={togglePreviewer}></i>
+                    </div>
+                    <textarea
+                        className={editorVisible ? '' : 'hide'}
                         name="editor" 
                         id="editor" 
                         onChange={updateText} 
@@ -75,8 +90,15 @@ function App() {
                     >
                     </textarea>
                 </div>
-                <div id="preview-wrapper">
-                    <div id="preview" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked(markdownText, {breaks: true})) }}>
+                <div id="preview-wrapper" className={previewerVisible ? '' : 'hide'}>
+                    <div className={previewerVisible ? 'toolbar' : 'toolbar hide'}>
+                        <p>Previewer</p> 
+                        <i className={editorVisible ? 'fa fa-arrows-alt' : 'fa fa-compress'} onClick={toggleEditor}></i>
+                    </div>
+                    <div
+                        className={previewerVisible ? '' : 'hide'}
+                        id="preview" 
+                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked(markdownText, {breaks: true})) }}>
                     </div>
                 </div>
             </div>

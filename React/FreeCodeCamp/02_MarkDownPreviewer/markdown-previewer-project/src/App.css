@@ -19,6 +19,10 @@
   color: rgba(48, 46, 46, 0.998)
 }
 
+i {
+  cursor: pointer;
+}
+
 #project-title {
   text-align: center;
   color: #242424;
@@ -34,6 +38,40 @@
   height: 80vh;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  
+}
+
+#preview-wrapper.hide {
+  width: 0%;
+  height: 0;
+}
+
+#editor-wrapper.hide {
+  width: 0%;
+  height: 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #3F7CAC;
+  padding: 1rem 0.5rem;
+  border: 1px solid white;
+  box-shadow: 1px 1px 10px 2px #8F6593;
+  font-size: 1rem;
+  height: 5%;
+  z-index: 1;
+}
+
+.toolbar > p {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.hide {
+  display: none;
 }
 
 #editor {
@@ -42,25 +80,25 @@
   resize: vertical;
   background-color: #242424;
   color: rgba(255, 255, 255, 0.87);
-  border: 2px solid white;
+  border: 0.5px solid white;
   padding: 0 1rem;
-  box-shadow: 1px 1px 10px 2px purple;
+  box-shadow: 1px 1px 10px 2px #8F6593;
 }
 
 #preview {
   width: 100%;
   height: 100%;
   padding: 0 1rem;
-  border: 2px solid white;
+  border: 0.5px solid white;
   background-color: #242424;
   overflow-y: scroll;
-  box-shadow: 1px 1px 10px 2px purple;
+  box-shadow: 1px 1px 10px 2px #8F6593;
   resize: vertical;
 }
 
 #preview blockquote {
-  border-left: 3px solid #10cece;
-  color: #10cece;
+  border-left: 3px solid #3F7CAC;
+  color: #3F7CAC;
   padding-left: 5px;
   margin-left: 25px;
 }
@@ -84,11 +122,11 @@
 }
 
 #preview h1 {
-  border-bottom: 2px solid #10cece;
+  border-bottom: 2px solid #3F7CAC;
 }
 
 #preview h2 {
-  border-bottom: 1px solid #10cece;
+  border-bottom: 1px solid #3F7CAC;
 }
 
 #preview table {
@@ -97,7 +135,7 @@
 
 #preview td,
 #preview th {
-  border: 2px solid #10cece;
+  border: 2px solid #3F7CAC;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -107,7 +145,7 @@
 }
 
 code {
-  color: #800080;
+  color: #8F6593;
 }
 
 ul, ol {
@@ -115,9 +153,14 @@ ul, ol {
 }
 
 @media screen and (max-width: 800px) {
+  
   .container {
-    flex-direction: column;
-    padding: 10px 20px;
+    gap: 0;
+  }
+
+  .toolbar {
+    font-size: 0.9em;
+    height: 3%;
   }
 
   .credits {
@@ -130,17 +173,26 @@ ul, ol {
 
   #editor-wrapper, #preview-wrapper {
     height: auto;
+    width: 100%;
   }
+
   #editor {
-    width: 90%;
-    height: 300px;
+    width: 100%;
+    height: 80vh;
     font-size: 0.7em;
+  }
+
+  .toolbar {
+    font-size: 0.9em;
+    height: 3%;
+    width: 100%;
   }
 
   #preview {
     width: 100%;
-    height: 600px;
+    height: 80vh;
     font-size: 0.7em;
+    margin-right: -200px;
   }
 
   #preview > p > code, #preview pre, #preview code {
@@ -151,6 +203,10 @@ ul, ol {
 
 @media screen and (min-width: 1920px) {
 
+  .toolbar {
+    font-size: 2em;
+    height: 7%;
+  }
   #project-title {
     font-size: 5em; 
   }
