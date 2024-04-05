@@ -1,0 +1,30 @@
+.drum-pad {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+#drum-machine {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    grid-gap: 5px;
+    padding: 50px;
+    border: 2px solid gray;
+    box-shadow: 10px 10px 20px #000000;
+    background: #000000;
+}
+
+#display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    margin-top: 20px;
+    grid-row: 4 / 4;
+    grid-column: 2 / 2;    
+    font-weight: bold;
+}
+
