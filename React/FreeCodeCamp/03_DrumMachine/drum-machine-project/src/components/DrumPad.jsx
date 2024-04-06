@@ -13,6 +13,9 @@ export default function DrumPad(props) {
         const handleKeyPress = (event) => {
             if (event.key.toUpperCase() === props.keyBoard) {
                 playSoundAndSetDescription();
+                const button = document.getElementById(props.keyBoard);
+                button.classList.add('active');
+                setTimeout(() => button.classList.remove('active'), 100);
             }
         };
         
