@@ -22,12 +22,17 @@ function App() {
     />)
 
 	return (
-		<div id="drum-machine">
+        <div>
+            <h1 class="drum-title">Drum Machine</h1>
+            <div id="drum-machine">
             {drumPadElements}
-            <div id="display">
-                {text}
+                <div id="display">
+                    {text}
+                </div>
             </div>
-		</div>
+            <p class="creator">by IvanVidelaR</p>
+        </div>
+		
 	)
 }
 
