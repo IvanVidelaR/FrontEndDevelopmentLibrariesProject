@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+#calculator {
+  width: 310px;
+  height: 550px;
+  background: linear-gradient(191.34deg, #17181A -4.95%, #17181A 103.74%);
+  border-radius: 39px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 10px 10px 50px #004473;
+}
+
+.display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(191.34deg, #17181A -4.95%, #17181A 103.74%);
+  width: 270px; 
+  /* 60 x 5 */
+  height: 100px;
+  margin-top: 40px;
+}
+
+#display-formula {
+  font-size: 1em;
+  color: #616161;
+}
+
+#display {
+  font-size: 2.5em;
+  color: #FFFFFF;
+}
+
+.calculator-elements {
+  display: grid;
+  grid-template-rows: repeat(5, 60px);
+  grid-template-columns: repeat(4, 60px);
+  grid-template-areas: 
+  'clear clear divide multiply'
+  'seven eight nine minus'
+  'four five six plus'
+  'one two three equals'
+  'zero zero decimal equals';
+  grid-gap: 7px;
+}
+
+.calculator-elements button {
+  font-family: "Poppins", sans-serif;
+  border-radius: 16px;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+  border: none;
+}
+
+.calculator-elements button:hover {
+  opacity: 0.8;
+  border: 1px solid #B2DAFF;
+}
+
+.calculator-elements button:active {
+  transform: scale(0.95);
+}
+
+#clear {
+  grid-area: clear;
+}
+
+#zero {
+  grid-area: zero;
+}
+
+#equals {
+  grid-area: equals;
+}
+
+.gray-turquoise {
+  background-color: #303136;
+  color: #29A8FF;
+}
+
+.lightBlue-white {
+  background-color: #1991FF;
+  color: #B2DAFF;
+}
+
+.blue-lightBlue {
+  background-color: #005DB2;
+  color: #339DFF;
+}
+
+.gray-gray {
+  background-color: #616161;
+  color: #A5A5A5;
+}
