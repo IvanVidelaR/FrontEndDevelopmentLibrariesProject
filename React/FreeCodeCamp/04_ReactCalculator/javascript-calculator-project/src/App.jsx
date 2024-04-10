@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Calculator from './components/Calculator';
 import './App.css'
 
 function App() {
@@ -13,168 +14,149 @@ function App() {
 	}
 
 	function calculate() {
-		// MODIFICAR ESTO... No m acuerdo porque jajsjas
-		setDisplay(eval(formula));
-		
+		setDisplay(eval(formula));		
+		setCalculated(true);
 	}
 
 	function buttonClick(input) {
-		if(input === "clear") {
+		if(calculated) {
+			setCalculated(false);
+		}
+
+		if(input === "clear") 
+		{
 			setFormula("");
 			setDisplay("0");
-		} else if(isOperator(input)) {
-			
-			setFormula((prevFormula) => 
-			{
-				const lastCharFormula = prevFormula[prevFormula.length - 1];
-
-				if(isOperator(lastCharFormula)) {
-					return prevFormula.slice(0, -1) + input
-				}
-
-				return prevFormula + input
-			});
-
-			setDisplay(input);
-
-		} else if(input == "equals") {
-			if(formula) {
-				calculate()
-				setCalculated(true);
+		} 
+		else if(isOperator(input)) 
+		{
+			if(!formula) {
+				setFormula(display)
 			}
-		} else if(input == "decimal") {
-			// AGREGAR QUE SE PUEDA DECIMAL
-		} else if(input == "0") {
-			// MODIFICAR ESTO QUE NO ME DEJA PONER CEROS SEGUIDOS
-			setFormula((prevFormula) => 
+
+			const lastCharFormula = formula[formula.length - 1]
+			const lastLastCharFormula = formula[formula.length - 2]
+			if(!calculated) 
 			{
-				if(prevFormula[prevFormula.length - 1] == 0) {
-					return prevFormula.slice(0, -1) + input;
+				if(isOperator(lastCharFormula))
+				{
+					if(input == "-" && (isOperator(lastCharFormula) && lastCharFormula != "-")) {
+						setFormula(prevFormula => prevFormula + input);
+					}
+					else if(isOperator(lastLastCharFormula)) {
+						setFormula(prevFormula => prevFormula.slice(0, -2) + input)
+					}
+					else {
+						setFormula(prevFormula => prevFormula.slice(0, -1) + input)
+					}
+					
 				}
-				else {
-					return prevFormula + input;
+				else
+				{
+					setFormula(prevFormula => prevFormula + input)
 				}
-			})
+
+				setDisplay(input);
+			}
+			else 
+			{
+				setFormula(display + input);
+				setDisplay(input);
+			}
+		} 
+		else if(input == "equals") 
+		{
+			if(formula && !calculated) {
+				calculate()
+			}
+		} 
+		else if(input == ".") 
+		{
+			if(!calculated)
+			{
+				if(!formula)
+				{
+					setFormula("0");
+				}
+				const lastNumber = formula.split(/[-+/*]/g).pop();
+				if(lastNumber?.includes(".")) return;
+				setFormula(prevFormula => prevFormula + input);
+				setDisplay(prevDisplay => prevDisplay + input);
+			}
+			else
+			{
+				setFormula(input);
+				setDisplay(input);
+			}
+		} 
+		else if(input == "0") 
+		{
+			if(display == "0" && !formula)
+			{
+				setDisplay("0");
+				setFormula("0");
+			}
+			else if(formula[formula.length - 1] == "0" && (formula.length == 1 || isOperator(formula[formula.length - 2]))) 
+			{
+				setFormula(prevFormula => prevFormula.slice(0, -1) + input);
+				setDisplay(prevDisplay => prevDisplay.slice(0, -1) + input);
+			}
+			else if(isOperator(display)) 
+			{
+				setFormula(prevFormula => prevFormula + input);
+				setDisplay(prevDisplay => prevDisplay.slice(0, -1) + input);
+			}
+			else 
+			{
+				setFormula(prevFormula => prevFormula + input);
+				setDisplay(prevDisplay => prevDisplay + input);
+			}
 		}
-		else {
-			// MODIFICAR ESTO QUE NO ME DEJA 9 + 9 = + 9 (solo un ejemplo) 
+		else 
+		{
 			if(!calculated) {
-				setFormula((prevFormula) => prevFormula + input);
-				setDisplay(prevDisplay => {
-					if(prevDisplay === "0") {
-						return input;
-					}
-					else if(isOperator(prevDisplay)) {
-						return prevDisplay.slice(0, -1) + input;
-					}
-					else
-					{
-						return prevDisplay + input;
-					}
-				});
-			} else {
-				setCalculated(prevCalculate => !prevCalculate);
+				if(display == "0") 
+				{
+					setDisplay(input);
+					setFormula(prevFormula => prevFormula.slice(0, -1) + input);
+				} else if (isOperator(display)) 
+				{
+					setDisplay(prevDisplay => prevDisplay.slice(0, -1) + input);
+					setFormula((prevFormula) => prevFormula + input);
+				}
+				else 
+				{
+					setDisplay(prevDisplay => prevDisplay + input);
+					setFormula((prevFormula) => prevFormula + input);
+				}
+			}
+			else
+			{
 				setFormula(input);
 				setDisplay(input);
 			}
 		}
-		
 	}
 
 	return (
-		<div id="calculator">
-			<div className="display-container">
-				<div id="display-formula">{formula}</div>
-				<div id="display">{display}</div>
+		<div id="container">
+			<h1 class="calculator-title">
+				React Calculator
+			</h1>
+			<div id="calculator">
+				<div className="display-container">
+					<div id="display-formula">
+						{formula}
+					</div>
+					<div id="display">
+						{display}
+					</div>
+				</div>
+				<Calculator buttonClick={buttonClick}/>
 			</div>
-			<div className="calculator-elements">
-				<button 
-					id="clear" 
-					className="gray-gray"
-					onClick={() => buttonClick("clear")}
-				>AC</button>
-				<button 
-					id="divide" 
-					className="blue-lightBlue"
-					onClick={() => buttonClick("/")}
-				>/</button>
-				<button 
-					id="multiply"
-					className="blue-lightBlue"
-					onClick={() => buttonClick("*")}
-				>X</button >
-				<button 
-					id="seven"
-					className="gray-turquoise"
-					onClick={() => buttonClick("7")}
-				>7</button>
-				<button 
-					id="eight"
-					className="gray-turquoise"
-					onClick={() => buttonClick("8")}
-				>8</button>
-				<button 
-					id="nine"
-					className="gray-turquoise"
-					onClick={() => buttonClick("9")}
-				>9</button>
-				<button 
-					id="subtract"
-					className="blue-lightBlue"
-					onClick={() => buttonClick("-")}
-				>-</button>
-				<button 
-					id="four"
-					className="gray-turquoise"
-					onClick={() => buttonClick("4")}
-				>4</button>
-				<button 
-					id="five"
-					className="gray-turquoise"
-					onClick={() => buttonClick("5")}
-				>5</button>
-				<button 
-					id="six"
-					className="gray-turquoise"
-					onClick={() => buttonClick("6")}
-				>6</button>
-				<button 
-					id="add"
-					className="blue-lightBlue"
-					onClick={() => buttonClick("+")}
-				>+</button>
-				<button 
-					id="one"
-					className="gray-turquoise"
-					onClick={() => buttonClick("1")}
-				>1</button>
-				<button 
-					id="two"
-					className="gray-turquoise"
-					onClick={() => buttonClick("2")}
-				>2</button>
-				<button 
-					id="three"
-					className="gray-turquoise"
-					onClick={() => buttonClick("3")}
-				>3</button>
-				<button 
-					id="equals"
-					className="lightBlue-white"
-					onClick={() => buttonClick("equals")}
-				>=</button>
-				<button 
-					id="zero"
-					className="gray-turquoise"
-					onClick={() => buttonClick("0")}
-				>0</button>
-				<button 
-					id="decimal"
-					className="gray-turquoise"
-					onClick={() => buttonClick("decimal")}
-				>.</button>
-			</div>
+			<p class="creator">by IvanVidelaR</p>
 		</div>
+		
 	)
 }
 
