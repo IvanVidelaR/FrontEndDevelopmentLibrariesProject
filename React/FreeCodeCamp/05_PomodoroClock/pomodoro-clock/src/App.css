@@ -1,0 +1,8 @@
+.container {
+    height: 100vh;
+    background-repeat: no-repeat, repeat;
+    background-size: 100%;
+}
+button:hover {
+    color: red;
+}

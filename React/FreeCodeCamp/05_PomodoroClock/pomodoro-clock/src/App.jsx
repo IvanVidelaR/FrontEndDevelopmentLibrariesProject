@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import './App.css'
+import backgroundImages from './background-images';
 
 function App() {
 	const [breakLength, setBreakLength] = useState(5);
@@ -8,6 +9,15 @@ function App() {
 	const [isStarted, setIsStarted] = useState(false);
 	const [isSessionLabel, setIsSessionLabel] = useState(true);
 	const audioRef = useRef(null);
+	const [backgroundImagesArray, setBackgroundImagesArray] = useState(backgroundImages)
+	
+	const getRandomImage = () => {
+		let randomNumber = Math.floor(Math.random() * 10);
+
+		return backgroundImages[randomNumber].url;
+	}
+
+	const [randomBackgroundImage, setRandomBackgroundImage] = useState(getRandomImage())
 
     const playAlarm = () => {
         audioRef.current.play();
@@ -58,7 +68,6 @@ function App() {
 					setSessionLength((prevSessionLength) => {
 						const newSessionLength =
 							prevSessionLength + (id === "session-increment" ? 1 : -1);
-						// Prevent negative session length
 						if (newSessionLength > 0) {
 							setTimeLeft(newSessionLength * 60);
 							return newSessionLength;
@@ -90,8 +99,12 @@ function App() {
 		audioRef.current.currentTime = 0;
 	}
 
+	const styles = {
+		backgroundImage: `url(${randomBackgroundImage})`
+	};
+	
 	return (
-		<div className="container">
+		<div className="container" style={styles}>
 			<audio 
 				id="beep"
 				src="/beep.mp3"
@@ -108,7 +121,7 @@ function App() {
 					id="session-increment"
 					onClick={() => handleLengthChange("session-increment")}
 				>
-					<i className="fa-solid fa-circle-up"></i>
+					<i className="fa-solid fa-plus"></i>
 				</button>
 				<p id="session-length">
 					{sessionLength}
@@ -117,7 +130,7 @@ function App() {
 					id="session-decrement"
 					onClick={() => handleLengthChange("session-decrement")}
 				>
-					<i className="fa-solid fa-circle-down"></i>
+					<i className="fa-solid fa-minus"></i>
 				</button>
 			</div>
 			<div className="break-length">
@@ -128,7 +141,7 @@ function App() {
 					id="break-increment"
 					onClick={() => handleLengthChange("break-increment")}
 				>
-					<i className="fa-solid fa-circle-up"></i>
+					<i className="fa-solid fa-plus"></i>
 				</button>
 				<p id="break-length">
 					{breakLength}
@@ -137,7 +150,7 @@ function App() {
 					id="break-decrement"
 					onClick={() => handleLengthChange("break-decrement")}
 				>
-					<i className="fa-solid fa-circle-down"></i>
+					<i className="fa-solid fa-minus"></i>
 				</button>
 			</div>
 			<div className="timer">
@@ -153,13 +166,19 @@ function App() {
 					id="start_stop"
 					onClick={() => setIsStarted(prevState => !prevState)}
 				>
-					{isStarted ? "stop" : "start"}
+					{isStarted ? <i className="fa-solid fa-pause"></i> : <i className="fa-solid fa-play"></i>}
 				</button>
 				<button 
 					id="reset"
 					onClick={refreshTime}
 				>
 					<i className="fa-solid fa-rotate-right"></i>
+				</button>
+				<button
+					id="background-image"
+					onClick={() => setRandomBackgroundImage(getRandomImage())}
+				>
+					<i className="fa-solid fa-image"></i>
 				</button>
 			</div>
 			<p className="credits">IvanVidelaR</p>
