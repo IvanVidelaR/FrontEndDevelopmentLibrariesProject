@@ -12,7 +12,7 @@ function App() {
 	const [backgroundImagesArray, setBackgroundImagesArray] = useState(backgroundImages)
 	
 	const getRandomImage = () => {
-		let randomNumber = Math.floor(Math.random() * 10);
+		let randomNumber = Math.floor(Math.random() * backgroundImagesArray.length);
 
 		return backgroundImages[randomNumber].url;
 	}
@@ -113,53 +113,15 @@ function App() {
 			>
 			</audio>
 			<h1 className="pomodoro-title">Pomodoro Clock</h1>
-			<div className="session-length">
-				<h2 id="session-label">
-					Session Length
-				</h2>
-				<button 
-					id="session-increment"
-					onClick={() => handleLengthChange("session-increment")}
-				>
-					<i className="fa-solid fa-plus"></i>
-				</button>
-				<p id="session-length">
-					{sessionLength}
-				</p>
-				<button 
-					id="session-decrement"
-					onClick={() => handleLengthChange("session-decrement")}
-				>
-					<i className="fa-solid fa-minus"></i>
-				</button>
-			</div>
-			<div className="break-length">
-				<h2 id="break-label">
-					Break Length
-				</h2>
-				<button 
-					id="break-increment"
-					onClick={() => handleLengthChange("break-increment")}
-				>
-					<i className="fa-solid fa-plus"></i>
-				</button>
-				<p id="break-length">
-					{breakLength}
-				</p>
-				<button 
-					id="break-decrement"
-					onClick={() => handleLengthChange("break-decrement")}
-				>
-					<i className="fa-solid fa-minus"></i>
-				</button>
-			</div>
 			<div className="timer">
-				<h2 id="timer-label">
+				<hr></hr>
+				<h3 id="timer-label">
 					{isSessionLabel ? "Session" : "Break"}
-				</h2>
-				<p id="time-left">
+				</h3>
+				<h2 id="time-left" style={timeLeft <= 60 ? {color: "red"} : {color: "#fff"}}>
 					{formatTime(timeLeft)}
-				</p>
+				</h2>
+				<hr></hr>
 			</div>
 			<div className="timer-control">
 				<button 
@@ -181,7 +143,53 @@ function App() {
 					<i className="fa-solid fa-image"></i>
 				</button>
 			</div>
-			<p className="credits">IvanVidelaR</p>
+			<div className="session-break-length-container">
+				<div className="session-length">
+					<h2 id="session-label">
+						Session Length
+					</h2>
+					<div className="button-signs">
+						<button 
+							id="session-increment"
+							onClick={() => handleLengthChange("session-increment")}
+						>
+							<i className="fa-solid fa-plus"></i>
+						</button>
+						<p id="session-length">
+							{sessionLength}
+						</p>
+						<button 
+							id="session-decrement"
+							onClick={() => handleLengthChange("session-decrement")}
+						>
+							<i className="fa-solid fa-minus"></i>
+						</button>
+					</div>
+				</div>
+				<div className="break-length">
+					<h2 id="break-label">
+						Break Length
+					</h2>
+					<div className="button-signs">
+						<button 
+							id="break-increment"
+							onClick={() => handleLengthChange("break-increment")}
+						>
+							<i className="fa-solid fa-plus"></i>
+						</button>
+						<p id="break-length">
+							{breakLength}
+						</p>
+						<button 
+							id="break-decrement"
+							onClick={() => handleLengthChange("break-decrement")}
+						>
+							<i className="fa-solid fa-minus"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<p className="credits">by IvanVidelaR</p>
 		</div>
 	)
 }
