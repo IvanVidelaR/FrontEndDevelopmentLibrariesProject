@@ -75,14 +75,38 @@ button:hover{
     font-size: .8em;
 }
 
-.credits {
+.container-credits {
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.container-credits a{
+    color: #fff;
+    list-style: none;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px #000;
+}
+
+.container-credits a:hover {
+    color: brown;
+    transform: scale(1.05);
+}
+
+.credits {
     font-size: 1.1em;
+}
+
+.credits-github {
+    font-size: 1.5em;
 }
 
 #session-label, #break-label {
     font-size: 1.5em;
 }
+
 @media screen and (max-width: 300px) {
     .pomodoro-title {
         font-size: 2em;
